@@ -12,7 +12,7 @@ function App() {
     duration: 10,
   });
 
-  const inputIsValid = investment.duration >= 1;
+  // const inputIsValid = investment.duration >= 1;
 
   function handleInput(inputIdentifier, newValue) {
     setInvestment((prevInvestment) => {
@@ -26,9 +26,11 @@ function App() {
   return (
     <>
       <Header />
+      {/* two way binding */}
       <UserInput investment={investment} onChangeInput={handleInput} />
-      {!inputIsValid && <p className="center">please enter valid input data</p>}
-      {inputIsValid && <ResultInvest invest={investment} />}
+      {/* {!inputIsValid && <p className="center">please enter valid input data</p>} */}
+      {/* {inputIsValid && <ResultInvest invest={investment} />} */}
+      <ResultInvest invest={investment} />
     </>
   );
 }

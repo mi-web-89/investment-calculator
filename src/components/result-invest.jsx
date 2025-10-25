@@ -1,9 +1,17 @@
 import { calculateInvestmentResults, formatter } from "../util/investment";
 
 export default function ResultInvest({ invest }) {
-  const resultData = calculateInvestmentResults(invest);
-  const initialInvestment = resultData[0].valueEndOfYear - resultData[0].interest - resultData[0].annualInvestment;
-  console.log("RESULT");
+  const resultData = [];
+  calculateInvestmentResults(invest, resultData);
+
+  if(resultData.length === 0) {
+    return <p className="center">Invalid data provided</p>
+  }
+
+  const initialInvestment =
+    resultData[0].valueEndOfYear -
+    resultData[0].interest -
+    resultData[0].annualInvestment;
 
   return (
     <table id="result">
@@ -20,9 +28,10 @@ export default function ResultInvest({ invest }) {
         {resultData.map((investData) => {
           const totalInterest =
             investData.valueEndOfYear -
-            investData.annualInvestment * investData.year - initialInvestment;
+            investData.annualInvestment * investData.year -
+            initialInvestment;
 
-          const totalAmountInvested = investData.valueEndOfYear - totalInterest
+          const totalAmountInvested = investData.valueEndOfYear - totalInterest;
 
           return (
             <tr key={investData.year}>
